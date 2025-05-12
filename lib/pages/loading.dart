@@ -1,7 +1,8 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -13,22 +14,15 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
 
   void  getData() async {
-    String username = await Future.delayed(Duration(seconds: 2), () {
-      return 'Blaise';
-    });
-
-    String bio = await Future.delayed(Duration(seconds: 3), () {
-      return 'Passionate software developer';
-    });
-
-    print('$username - $bio');
+    final response = await get(Uri.parse("http://172.16.0.225:8000/api"));
+    Map data = jsonDecode(response.body);
+    print(data['message']);
   }
 
   @override
   void initState(){
     super.initState();
     getData();
-    print('hello');
   }
 
   @override
