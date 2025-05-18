@@ -15,43 +15,56 @@ class _HomeState extends State<Home> {
     final Map data = ModalRoute.of(context)?.settings.arguments as Map? ?? {};
     print(data);
 
+    String bgImage = data['isDayTime'] ? 'day.jpg' : 'night.jpg';
+    Color txtColor = data['isDayTime'] ? Colors.black : Colors.white;
+
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 140, 0, 0),
-          child: Column(
-            children: [
-              TextButton.icon(
-                onPressed: (){
-                  Navigator.pushNamed(context, '/location');
-                },
-                icon: Icon(Icons.edit_location),
-                label: Text('Edit Location'),
-                style: ButtonStyle(
-                  // backgroundColor: MaterialStateProperty.all(Colors.green),
-                  foregroundColor: MaterialStateProperty.all(Colors.black)
-                ),
-              ),
-              SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    data['location'],
-                    style: TextStyle(
-                      fontSize: 30
-                    ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 250, 0, 0),
+            child: Column(
+              children: [
+                TextButton.icon(
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/location');
+                  },
+                  icon: Icon(Icons.edit_location),
+                  label: Text('Edit Location'),
+                  style: ButtonStyle(
+                    // backgroundColor: MaterialStateProperty.all(Colors.green),
+                    foregroundColor: MaterialStateProperty.all(txtColor)
                   ),
-                ],
-              ),
-              SizedBox(height: 15),
-              Text(
-                data['time'],
-                style: TextStyle(
-                  fontSize: 60
                 ),
-              ),
-            ],
+                SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      data['location'],
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: txtColor
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                Text(
+                  data['time'],
+                  style: TextStyle(
+                    fontSize: 60,
+                    color: txtColor
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

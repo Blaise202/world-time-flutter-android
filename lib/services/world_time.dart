@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -8,6 +10,7 @@ class WorldTime {
   late String time; // the time in that location
   late String flag; // url to an asset flag icon
   late String url; // location url for api endpoint
+  late bool isDayTime;
 
   WorldTime({required this.location,required this.flag,required this.url});
 
@@ -18,6 +21,7 @@ class WorldTime {
 
       time = data['time']['date'];
       DateTime dateTime = DateTime.parse(time);
+      isDayTime = dateTime.hour > 6 && dateTime.hour < 18 ? true : false;
       time = DateFormat.jm().format(dateTime);
     }
     catch(e){
