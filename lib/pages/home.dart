@@ -9,7 +9,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+
   Widget build(BuildContext context) {
+
+    final Map data = ModalRoute.of(context)?.settings.arguments as Map? ?? {};
+    print(data);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -24,6 +29,16 @@ class _HomeState extends State<Home> {
                 backgroundColor: MaterialStateProperty.all(Colors.green),
                 foregroundColor: MaterialStateProperty.all(Colors.white)
               ),
+            ),
+            Row(
+              children: [
+                Text(
+                  data['location'],
+                  style: TextStyle(
+                    
+                  ),
+                ),
+              ],
             )
           ],
         ),

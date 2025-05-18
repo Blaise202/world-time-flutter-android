@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class WorldTime {
   late String location; // local name for the UI
@@ -11,10 +12,18 @@ class WorldTime {
   WorldTime({required this.location,required this.flag,required this.url});
 
   Future<void> getTime() async {
-    final response = await get(Uri.parse("http://172.16.0.225:8000/api/time/$url"));
-    Map data = jsonDecode(response.body);
+    try {
+      final response = await get(Uri.parse("http://192.168.137.1:8000/api/time/$url"));
+      Map data = jsonDecode(response.body);
 
-    time = data['time']['date'];
+      time = data['time']['date'];
+      DateTime dateTime = DateTime.parse(time);
+      time = DateFormat.jm().format(dateTime);
+    }
+    catch(e){
+      time = 'Error fetching time. caught: $e';
+    }
+
   }
 
 }
