@@ -26,10 +26,10 @@ class _HomeState extends State<Home> {
                   Navigator.pushNamed(context, '/location');
                 },
                 icon: Icon(Icons.edit_location),
-                label: Text('Location'),
+                label: Text('Edit Location'),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
-                  foregroundColor: MaterialStateProperty.all(Colors.white)
+                  // backgroundColor: MaterialStateProperty.all(Colors.green),
+                  foregroundColor: MaterialStateProperty.all(Colors.black)
                 ),
               ),
               SizedBox(height: 15),

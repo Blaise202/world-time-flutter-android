@@ -18,7 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-to connect the flutter project 
+to connect the flutter project to the backend api
 1. import a http flutter package in your project "flutter pub add http"
 2. create a laravel project 
 3. start a laravel server "php artisan serve --host=0.0.0.0 --port=8000" 
@@ -31,3 +31,7 @@ to connect the flutter project
     - assign the response to a map variable "Map data = jsonDecode(response.body);"
 7. the access the objects of your data (ex: print(data['message']);)
    
+
+to import the spinkit package
+ - use command  "$ flutter pub add flutter_spinkit"
+ - to import the spinner "import 'package:flutter_spinkit/flutter_spinkit.dart';"
