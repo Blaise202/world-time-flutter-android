@@ -16,7 +16,7 @@ class WorldTime {
 
   Future<void> getTime() async {
     try {
-      final response = await get(Uri.parse("http://172.16.0.186:8000/api/time/$url"));
+      final response = await get(Uri.parse("http://172.16.1.43:8000/api/time/$url"));
       Map data = jsonDecode(response.body);
 
       time = data['time']['date'];

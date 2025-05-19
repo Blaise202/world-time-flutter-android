@@ -22,6 +22,16 @@ class _LocationState extends State<Location> {
     WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
   ];
 
+  void changeLocation(index) async {
+    WorldTime locationInstance = locations[index];
+    await locationInstance.getTime();
+    Navigator.pop(context, {
+      'location' : locationInstance.location,
+      'flag' : locationInstance.flag,
+      'time' : locationInstance.time,
+      'isDayTime' : locationInstance.isDayTime,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +60,7 @@ class _LocationState extends State<Location> {
               child: Card(
                 child: ListTile(
                   onTap: (){
-
+                    changeLocation(index);
                   },
                   title: Text(locations[index].location),
                   leading: CircleAvatar(
